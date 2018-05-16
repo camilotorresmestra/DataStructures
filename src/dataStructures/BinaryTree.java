@@ -84,11 +84,17 @@ public class BinaryTree {
     	return "";
     }
     
-    public BinaryTree recovery_subtree(String sub_inorder, String preorder) {
-    	if(sub_inorder.length()==0) return new BinaryTree();
+    public BinaryTree recovery_subtree_prepost(String subpreorder,String postorder) {
+    	BinaryTree temp = new BinaryTree();
+    	//TODO
+    	return temp;
+    }
+    
+    public BinaryTree recovery_subtree_inpre(String sub_inorder, String preorder) {
+    	BinaryTree temp = new BinaryTree();
+    	if(sub_inorder.length()==0) return temp;
     	else
     		if(sub_inorder.length()==1) {
-    			BinaryTree temp= new BinaryTree();
     			temp.root=new Node(sub_inorder);
     		}
     		else {
@@ -104,13 +110,41 @@ public class BinaryTree {
     					index = i;
     					less = indexes[i];
     				}
-    			BinaryTree temp = new BinaryTree();
+    			
     			temp.root= new Node(sub_inorder.substring(index, index+1));
-    			temp.root.left = recovery_subtree(sub_inorder.substring(0,index),preorder).root;
-    			temp.root.right = recovery_subtree(sub_inorder.substring(index+1),preorder).root;
-    			return temp;
+    			temp.root.left = recovery_subtree_inpre(sub_inorder.substring(0,index),preorder).root;
+    			temp.root.right = recovery_subtree_inpre(sub_inorder.substring(index+1),preorder).root;
     		}
-    	return null;
+    	return temp;
+    }
+    
+
+    public BinaryTree recovery_subtree_inpost(String sub_inorder, String postorder) {
+    	BinaryTree temp = new BinaryTree();
+    	if(sub_inorder.length()==0) return temp;
+    	else
+    		if(sub_inorder.length()==1) {
+    			temp.root=new Node(sub_inorder);
+    		}
+    		else {
+    			int[] indexes = new int[sub_inorder.length()];
+    			
+    			for(int i=0; i< sub_inorder.length(); i++) {
+    				indexes[i]= postorder.indexOf( sub_inorder.substring(i,  i+1));
+    			}
+    			//calculamos el mayorr y los volvemos la raíz del árbol
+    			int greater = Integer.MIN_VALUE, index =-1;
+    			for(int i=0;i<indexes.length; i++)
+    				if (indexes[i]<greater){
+    					index = i;
+    					greater = indexes[i];
+    				}
+    			
+    			temp.root= new Node(sub_inorder.substring(index, index+1));
+    			temp.root.left = recovery_subtree_inpost(sub_inorder.substring(0,index),postorder).root;
+    			temp.root.right = recovery_subtree_inpost(sub_inorder.substring(index+1),postorder).root;
+    		}
+    	return temp;
     }
     
     
