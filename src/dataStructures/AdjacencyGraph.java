@@ -1,5 +1,6 @@
 package dataStructures;
 
+
 public class AdjacencyGraph{
 	/**
 	 * The square matrix for representing all the connections
@@ -63,8 +64,9 @@ public class AdjacencyGraph{
 	 * @param v
 	 * @param weight
 	 * @param biDirectional
+	 * @throws VertexOutOfBoundsException 
 	 */
-	public void insert(int u, int v, int weight, boolean biDirectional) {
+	public void insert(int u, int v, int weight, boolean biDirectional) throws VertexOutOfBoundsException {
 		if(this.isFull()) {
 			this.resize(2);
 			this.insert(u,v,weight,biDirectional);
@@ -75,6 +77,8 @@ public class AdjacencyGraph{
 				adj[v][u]=weight;
 				occupied++;
 			}
+		}else {
+			throw new VertexOutOfBoundsException();
 		}
 	}
 	/**
@@ -98,16 +102,17 @@ public class AdjacencyGraph{
 	 * Traverses the Graph starting from Node u performing bfs 
 	 * iteratively
 	 * @param u
+	 * @return a List with the bfs path
+	 * @throws VertexOutOfBoundsException 
 	 */
 	
-	public List bfs(int u) {
+	public List bfs(int u) throws VertexOutOfBoundsException {
 		if(this.contains(u)) {
 			List path = new List();
 			Queue q = new Queue();
 			boolean[] visited = new boolean[occupied];
 			visited[u]=true;
 			q.enqueue(new Node(u));
-			
 			while(!q.isEmpty()) {
 				Node v = q.dequeue();
 				path.insertAtEnd(v);
@@ -123,8 +128,31 @@ public class AdjacencyGraph{
 			}
 			return path;
 		}
-			return null;	
+			throw new VertexOutOfBoundsException();	
 	}
 	
+	/**
+	 * Implements recursive dfs and returns a List containing the path
+	 * form node u
+	 * @param u
+	 * @return
+	 * @throws VertexOutOfBoundsException 
+	 */
+	
+	
+	public List dfs(int u) throws VertexOutOfBoundsException {
+		if(this.contains(u)) {
+			List path = new List();
+			boolean[] visited = new boolean[occupied];
+			visited[u]=true;
+			path.insertAtEnd(new Node(u));
+			for(int i=0;i<occupied;i++) {
+				if(!visited[i] && (adj[u][i]!=0))
+					path.concat(dfs(i));
+			}
+			return path;
+		}
+		throw new VertexOutOfBoundsException();
+	}
 	
 }

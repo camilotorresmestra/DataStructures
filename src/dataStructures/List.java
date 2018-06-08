@@ -17,7 +17,24 @@ public class List {
         }
         return counter;
     }
-    
+    /**
+     * Performs Linear Search and retrieves the 
+     * index of the Node with the given value or -1
+     * if it does not exist
+     * @param v
+     * @return 
+     */
+    public int linearSearch(double v) {
+    	int pos=0;
+    	Node temp = this.head;
+    	while(temp!=null) {
+    		if(temp.value==v)
+    			return pos;
+    		temp=temp.next;
+    		pos++;
+    	}
+    	return -1;
+    }
     public Node get(int index) {
         if(index < this.length() && index>=0) {
             Node temp = head;
@@ -251,6 +268,20 @@ public class List {
 			a=a.next;
 		}
 		return clone;		
+	}
+	
+	public boolean contains(int u) {
+		return linearSearch(u)>-1;
+	}
+	
+	public void concat(List list) {
+		Node temp = list.head;
+		while(temp!=null) {
+			Node aux = temp.clone();
+			this.insertAtEnd(aux);
+			temp=temp.next;
+		}
+
 	}
 }
 
