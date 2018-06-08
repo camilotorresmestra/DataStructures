@@ -1,4 +1,4 @@
-package hackerearth;
+package hackerearth.nonlinear;
 import java.io.*;
 import java.util.*;
 

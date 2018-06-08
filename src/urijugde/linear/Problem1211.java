@@ -1,7 +1,7 @@
 /**
  * 
  */
-package urijugde;
+package urijugde.linear;
 import java.io.*;
 
 public class Problem1211 {

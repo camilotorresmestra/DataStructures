@@ -1,4 +1,4 @@
-package hackerearth;
+package hackerearth.nonlinear;
 import java.io.*;
 import dataStructures.BinarySearchTree;
 public class MonkWatchingFight {

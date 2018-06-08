@@ -1,4 +1,4 @@
-package urijugde;
+package urijugde.linear;
 import java.io.*;
 
 public class problem1281 {

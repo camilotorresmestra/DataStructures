@@ -1,4 +1,4 @@
-package hackerearth;
+package hackerearth.linear;
 import java.io.*;
 import java.util.*;
 import dataStructures.Stack;

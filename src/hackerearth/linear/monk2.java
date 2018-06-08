@@ -1,4 +1,4 @@
-package hackerearth;
+package hackerearth.linear;
 import java.util.*;
 import java.io.*;
 class Node {

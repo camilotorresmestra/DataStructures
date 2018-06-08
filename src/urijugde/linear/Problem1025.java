@@ -1,4 +1,4 @@
-package urijugde;
+package urijugde.linear;
 import java.io.*;
 import java.util.Scanner;
 import dataStructures.Sorts;
