@@ -1,24 +1,24 @@
 package hackerearth;
 import java.io.*;
-class BSTNode{
+class BTNode{
 	int value;
-	BSTNode right,left;
+	BTNode right,left;
 	int level;
 	
 	
-	public BSTNode(int value) {
+	public BTNode(int value) {
 		this.value=value;
 	}
 }
 
 class BinarySearchTree{
-	BSTNode root;
+	BTNode root;
 	int h=0;
 	public boolean isEmpty() {
 		return this.root==null;
 	}
 	
-	public int insert(BSTNode r,BSTNode n) {
+	public int insert(BTNode r,BTNode n) {
 		if(this.isEmpty()) {
 			this.root=n;
 		}
@@ -56,7 +56,7 @@ public class monkFight {
 		S=br.readLine().split(" ");
 		for(int i=0;i<N;i++) {
 			int n=Integer.parseInt(S[i]);
-			int h = BST.insert(BST.root, new BSTNode(n));
+			int h = BST.insert(BST.root, new BTNode(n));
 			BST.checkHeight(h);
 		}
 		
