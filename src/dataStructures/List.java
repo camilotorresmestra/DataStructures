@@ -1,8 +1,9 @@
 package dataStructures;
 import java.io.*;
+
 public class List {
     
-    Node head = null;
+    public Node head = null;
  
     
     public int length() {
@@ -177,6 +178,79 @@ public class List {
 		
 		previ.next=Nj;
 		prevj.next=Ni;
+	}
+    
+	/**
+	 * returns a sublist with elements ranging from index begin to end
+	 * @param begin
+	 * @return
+	 */
+	public List sublist(int begin)
+	{
+		List subList = new List();
+		
+		if(begin < this.length())
+		{
+			Node temp = head;
+			
+			for(int i = 0; i < begin; i++)
+				temp = temp.next;
+			
+			while(temp != null)
+			{
+				subList.insertAtEnd(temp.clone());
+				temp = temp.next;
+			}
+		}
+		
+		return subList;
+	}
+	
+	/**
+	 * Returns a sublist between two indexes
+	 * @param begin
+	 * @param end
+	 * @return
+	 */
+	public List sublist(int begin, int end)
+	{
+		List subList = new List();
+		if(end<this.length() && end>begin) {
+			for(int i=0;i<=end;i++) {
+				if(begin < this.length())
+				{
+					Node temp = head;
+					
+					for(int j = 0; j < begin; j++)
+						temp = temp.next;
+					
+					while(temp != null)
+					{
+						subList.insertAtEnd(temp.clone());
+						temp = temp.next;
+					}
+				}
+			}
+		}
+		
+		return subList;
+	}
+	
+	/**
+	 * Creates a new List by creating copis of each of its elements.
+	 * @return
+	 */
+	public List cloneList()
+	{
+		List clone = new List();
+		Node a=this.head;
+		a = clone.head;
+		
+		for(int i=0; i<this.length();i++) {
+			a.next=this.get(i+1);
+			a=a.next;
+		}
+		return clone;		
 	}
 }
 

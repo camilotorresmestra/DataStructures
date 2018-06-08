@@ -2,7 +2,7 @@ package dataStructures;
 
 public class Node {
     
-	  double value;
+	  public double value;
 	  
 	  Node next = null;
 	  
