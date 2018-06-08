@@ -52,6 +52,12 @@ public class Stack {
     		this.push(reverse.dequeue());
     	}
     }
+
+	public void push(int value) {
+		Node n = new Node(value);
+		this.push(n);
+		
+	}
     
     
 }
