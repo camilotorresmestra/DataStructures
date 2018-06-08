@@ -10,7 +10,7 @@ public class Sorts {
 	 * @param length
 	 * @return 
 	 */
-	public int[] bigArray(int length) {
+	public static int[] bigArray(int length) {
         Random rd = new Random();
         int[] temp = new int[length];
         
@@ -25,7 +25,7 @@ public class Sorts {
 	 * @param array
 	 * @throws IOException
 	 */
-    public void printArray(int[] array) throws IOException {
+    public static void printArray(int[] array) throws IOException {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         for(int i=0;i<array.length;i++)
             bw.write(array[i]+" ");
@@ -35,25 +35,26 @@ public class Sorts {
     
 	//Sorting Algorithms:
 	
-    public void bubbleSort(int[] unsorted) {
- 
-        boolean swap;
-        int temp;
-        do {
-            swap=false;
-            for(int i=0;i<(unsorted.length-1);i++) {
-                if(unsorted[i]>unsorted [i+1]){
-                    temp=unsorted[i];
-                    unsorted[i]=unsorted[i+1];
-                    unsorted[i+1]=temp;
-                    swap=true;
-                }
-            }
-        }
-        while(swap);
+    public static int[] bubbleSort(int[] unsorted) {
+
+    	boolean swap;
+    	int temp;
+    	do {
+    		swap=false;
+    		for(int i=0;i<(unsorted.length-1);i++) {
+    			if(unsorted[i]>unsorted [i+1]){
+    				temp=unsorted[i];
+    				unsorted[i]=unsorted[i+1];
+    				unsorted[i+1]=temp;
+    				swap=true;
+    			}
+    		}
+    	}
+    	while(swap);
+    	return unsorted;
     }
     
-    public void insertionSort(int[] unsorted) {
+    public static int[] insertionSort(int[] unsorted) {
         int temp, indexHole;
         
         for(int i=1; i< unsorted.length; i++) {
@@ -66,9 +67,10 @@ public class Sorts {
             }
             unsorted[indexHole]=temp;
         }
+        return unsorted;
     }
     
-    public int[] mergeSort(int[] unsorted) {
+    public static int[] mergeSort(int[] unsorted) {
         int size;
         
         if(unsorted.length>1) {
@@ -93,7 +95,7 @@ public class Sorts {
         return unsorted;
     }
     
-    public int[] merge(int[] a, int[] b) {
+    public static int[] merge(int[] a, int[] b) {
         int size = a.length + b.length; 
         int[] c = new int[size];
         
@@ -127,7 +129,7 @@ public class Sorts {
     
     
     
-    public int[] countingSort(int[] unsorted) throws IOException {
+    public static int[] countingSort(int[] unsorted) throws IOException {
 		int max = Integer.MIN_VALUE;
 		int[] aux;
 		int index=0;
@@ -158,7 +160,7 @@ public class Sorts {
      * @return the index of element x on array a, or -1 in case it doesn't exists
      */
     
-	public int iterativeBinarySearch(int[] a,int x) {
+	public static int iterativeBinarySearch(int[] a,int x) {
 		int lowerBound=0, upperBound=a.length-1, index=-1;
 
 		do {
@@ -189,7 +191,7 @@ public class Sorts {
 	 * @param uB
 	 * @return index of element x on array a or -1 in case it doesn't exists
 	 */
-	public int recursiveBinarySearch(int[] a, int x, int lB, int uB) {
+	public static int recursiveBinarySearch(int[] a, int x, int lB, int uB) {
 		int middlePoint= (lB+uB)/2;
 		if(lB==uB) {
 			if(x==a[middlePoint]){
@@ -212,44 +214,42 @@ public class Sorts {
     
     public static void main(String[] args) throws IOException {
         
-        Sorts sorts = new Sorts();
-        
-        int[] a= sorts.bigArray(1000);
+        int[] a= Sorts.bigArray(1000);
         int[] b= a.clone(),c= a.clone(),d=a.clone();
                 
-        sorts.printArray(a);
+        Sorts.printArray(a);
         int start = (int) System.nanoTime();
-        sorts.bubbleSort(a);
+        Sorts.bubbleSort(a);
         int end = (int) System.nanoTime();
         int duration = (int) (end-start);
         System.out.println("Execution Time: "+duration+" nanoseconds");
-        sorts.printArray(a);
+        Sorts.printArray(a);
         
-        sorts.printArray(b);
+        Sorts.printArray(b);
         start=(int) System.nanoTime();
-        sorts.insertionSort(b);
+        Sorts.insertionSort(b);
         end=(int) System.nanoTime();
         duration = end-start;
         System.out.println("Execution Time: "+duration+" nanoseconds");
-        sorts.printArray(b);
+        Sorts.printArray(b);
         
-        sorts.printArray(c);
+        Sorts.printArray(c);
         start=(int) System.nanoTime();
-        c=sorts.mergeSort(c);
+        c=Sorts.mergeSort(c);
         end=(int) System.nanoTime();
         duration = end-start;
         System.out.println("Execution Time: "+duration+" nanoseconds");
-        sorts.printArray(c);
+        Sorts.printArray(c);
         
         int[] duration1 = new int[6];  
 
 	
 
-		sorts.printArray(d); 
+		Sorts.printArray(d); 
 
 		start=(int) System.nanoTime(); 
 
-		d=sorts.countingSort(d); 
+		d=Sorts.countingSort(d); 
 
 		end=(int) System.nanoTime(); 
 
@@ -257,7 +257,7 @@ public class Sorts {
 
 		System.out.println("Counting Sort:"); 
 
-		sorts.printArray(d); 
+		Sorts.printArray(d); 
 
 		System.out.println("Execution Time: "+duration1[3]+" nanoseconds"); 
 
@@ -267,7 +267,7 @@ public class Sorts {
 
 		start=(int) System.nanoTime(); 
 
-		index = sorts.iterativeBinarySearch(a,number2Search);
+		index = Sorts.iterativeBinarySearch(a,number2Search);
 
 		end=(int) System.nanoTime(); 
 		duration1[4] = end-start; 
@@ -275,7 +275,7 @@ public class Sorts {
 		System.out.println("Number: "+number2Search+" found in position: "+index+"\nExecution Time: "+duration1[4]+" nanoseconds"); 
 		start=(int) System.nanoTime(); 
 
-		index = sorts.recursiveBinarySearch(a,number2Search,0,a.length);
+		index = Sorts.recursiveBinarySearch(a,number2Search,0,a.length);
 
 		end=(int) System.nanoTime(); 
 		duration1[5] = end-start; 

@@ -29,8 +29,17 @@ class TreeNode{
 	}
 }
 
+/**
+ * Implementation of a BinaryTree using an Array
+ * @author jucat
+ *
+ */
+
 class BinaryTree{
 	TreeNode root;
+	/**
+	 * Array containing the Nodes
+	 */
 	TreeNode[] nodes = new TreeNode[1001];
 	
 	public BinaryTree() {
@@ -66,7 +75,7 @@ class BinaryTree{
 	
 }
 
-public class mirror {
+public class MirrorImage {
 	public static void main(String[] args) throws IOException {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		Scanner sc = new Scanner(System.in);

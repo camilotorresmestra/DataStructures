@@ -1,28 +1,33 @@
 package dataStructures;
 
+import dataStructures.BinaryTree.Node;
+
 public class BinaryTree {
+
 	class Node{
 		Node left=null;
 		Node right=null;
 		int value;
 		String letter;
-		
+
 		public Node(String letter) {
 			this.letter=letter;
 		}
-		
+
 		public Node(int value) {
 			this.value=value;
 		}
-		
+
 		public String toString() {
 			return "";
 		}
 	}
 	
     Node root = null;
-    public BinaryTree() {}
-    
+    /**
+     * Iterative insertion of a Node
+     * @param value
+     */
     public void insert(int value) {
         Node node = new Node(value);
         
@@ -51,6 +56,13 @@ public class BinaryTree {
             else parent.right = temp;
         }
     }
+    
+    
+    public boolean isEmpty() {
+		return this.root==null;
+	}
+    public BinaryTree() {}
+    
     
     public void preorder_print(Node node) {
         if(node!=null) {
@@ -81,6 +93,7 @@ public class BinaryTree {
     }
     
     public String in_pre2post(String inorder, String preorder) {
+    	//TODO
     	return "";
     }
     
